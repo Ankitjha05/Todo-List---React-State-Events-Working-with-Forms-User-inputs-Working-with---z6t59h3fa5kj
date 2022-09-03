@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import List from './List'
 
 export default function Todo() {
-    const [text, settext] = useState();
+    const [text, settext] = useState("");
     const [listitem, setlistitem] = useState([]);
 
     const handleClick = () => {
@@ -14,6 +14,10 @@ export default function Todo() {
         
         settext(e.target.value);
     }
+    const getLen = (string)=>{
+        if(string.length ===0) return true;
+        return false;
+    }
     return (
         <div>
             <ul>
@@ -22,7 +26,7 @@ export default function Todo() {
                 })}
             </ul>
             <textarea id='task' onChange={handleChange} value={text}></textarea>
-            <button id='btn' onClick={()=>handleClick()}>Add</button>
+            <button id='btn' disabled={getLen(text)} onClick={()=>handleClick()}>Add</button>
         </div>
     )
 }
